@@ -35,6 +35,8 @@ jobs:
       name: terraform-docs
       runs-on: ubuntu-latest
       steps:
+        - name: Git clone the repository
+          uses: actions/checkout@main #how do you stay on top of versions?
         - uses: terraform-docs/gh-actions@main
           name: Generate terraform-docs and add to PR
           with:
