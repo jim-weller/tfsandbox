@@ -21,9 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
-        uses: actions/checkout@v4 #how do you stay on top of versions?
+        uses: actions/checkout@main #how do you stay on top of versions?
       - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@main
         with:
           role-to-assume: arn:aws:iam::206190791305:role/github-role #the role must match below
           role-session-name: github-role # this is the role name in AWS
