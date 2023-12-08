@@ -36,7 +36,8 @@ jobs:
       runs-on: ubuntu-latest
       permissions:
         contents: write
-        pull-requests: write
+        #pull-requests: write
+        #pages: write
       steps:
         - name: Git clone the repository
           uses: actions/checkout@main #how do you stay on top of versions?
