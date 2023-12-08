@@ -48,3 +48,14 @@ jobs:
             output-file: README.md
             output-method: inject
             git-push: "true" 
+
+    format:
+      name: terraform fmt
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@main
+        name: checkout
+      - uses: hashicorp/setup-terraform@v2
+      - name: terraform fmt
+        id: fmt
+        run: terraform fmt -check
