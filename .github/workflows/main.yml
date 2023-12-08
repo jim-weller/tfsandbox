@@ -18,11 +18,12 @@ permissions:
       contents: read    # This is required for actions/checkout
 jobs:
   AssumeRoleAndCallIdentity:
+    name: Test AWS Connection
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
         uses: actions/checkout@main #how do you stay on top of versions?
-        name: configure aws credentials
+      - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@main
         with:
           role-to-assume: arn:aws:iam::206190791305:role/github-role #the role must match below
@@ -30,10 +31,14 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Sts GetCallerIdentity
         run: aws sts get-caller-identity
-        uses: terraform-docs/gh-actions@main
-        name: Generate terraform-docs and add to PR
-        with:
-          working-dir: .
-          output-file: README.md
-          output-method: inject
-          git-push: "true"
+  docs:
+      name: terraform-docs
+      runs-on: ubuntu-latest
+      steps:
+        - uses: terraform-docs/gh-actions@main
+          name: Generate terraform-docs and add to PR
+          with:
+            working-dir: .
+            output-file: README.md
+            output-method: inject
+            git-push: "true"
