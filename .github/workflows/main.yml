@@ -21,12 +21,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 #how do you stay on top of versions?
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::206190791305:role/github-role/GitHubAction-AssumeRoleWithAction
-          role-session-name: github-role
+          role-to-assume: arn:aws:iam::206190791305:role/github-role #the role must match below
+          role-session-name: github-role # this is the role name in AWS
           aws-region: ${{ env.AWS_REGION }}
       # Hello from AWS: WhoAmI
       - name: Sts GetCallerIdentity
