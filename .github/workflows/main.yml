@@ -34,6 +34,9 @@ jobs:
   docs:
       name: terraform-docs
       runs-on: ubuntu-latest
+      permissions:
+        contents: write
+        pull-requests: write
       steps:
         - name: Git clone the repository
           uses: actions/checkout@main #how do you stay on top of versions?
@@ -43,4 +46,4 @@ jobs:
             working-dir: .
             output-file: README.md
             output-method: inject
-            git-push: "true"
+            git-push: "true" 
